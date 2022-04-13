@@ -1,0 +1,20 @@
+table {
+    width: 400px;
+}
+
+th {
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid darkslateblue;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+th, td {
+    padding: 20px;
+}

@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div>
+        <h2>Books</h2>
+        <a href="{% url 'add_book' %}">Add book</a>
+        <form method="GET">
+            {{ filter.form|crispy }}
+            <button type="submit">
+                Search
+            </button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date published</th>
+                <th>ISBN</th>
+                <th>Pages count</th>
+                <th>Cover link</th>
+                <th>Language</th>
+                <th>Edit</th>
+            </tr>
+            {% for book in filter.qs %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.published_date }}</td>
+                    <td>{{ book.ISBN }}</td>
+                    <td>{{ book.Pages_count }}</td>
+                    <td><a href="{{ book.cover_link }}">Book cover</a></td>
+                    <td>{{ book.language }}</td>
+                    <td><a href="{% url 'update_book' pk=book.id %}">Edit</a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
