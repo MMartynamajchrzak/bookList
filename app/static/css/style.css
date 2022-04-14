@@ -1,7 +1,3 @@
-body {
-    background-color: pink;
-}
-
 table {
     width: 400px;
 }
@@ -11,7 +7,7 @@ th {
 }
 
 table, th, td {
-    border: 1px solid darkslateblue;
+    border: 1px solid black;
     text-align: center;
 }
 
@@ -26,8 +22,4 @@ th, td {
 
 td {
     text-align: center;
-}
-
-.test {
-    color: rebeccapurple;
 }

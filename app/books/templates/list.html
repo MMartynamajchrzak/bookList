@@ -40,7 +40,7 @@
                 {% else %}
                     <td><a href="{{ book.cover_link }}">Book cover</a></td>
                 {% endif %}
-                <td class="test">{{ book.language }}</td>
+                <td>{{ book.language }}</td>
                 <td><a href="{% url 'update_book' pk=book.id %}">Edit</a> </td>
             </tr>
         {% endfor %}
