@@ -1,3 +1,7 @@
+body {
+    background-color: pink;
+}
+
 table {
     width: 400px;
 }
@@ -8,6 +12,7 @@ th {
 
 table, th, td {
     border: 1px solid darkslateblue;
+    text-align: center;
 }
 
 img{
@@ -17,4 +22,12 @@ img{
 
 th, td {
     padding: 20px;
+}
+
+td {
+    text-align: center;
+}
+
+.test {
+    color: rebeccapurple;
 }

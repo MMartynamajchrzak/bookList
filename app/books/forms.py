@@ -3,6 +3,8 @@ from crispy_forms.layout import Layout, Submit
 from django import forms
 
 from .models import Book
+from .validators import validate_isbn
+from .constants import ISBN_MAX_LENGTH
 
 
 class BookForm(forms.ModelForm):
@@ -28,3 +30,13 @@ class BookForm(forms.ModelForm):
             'language',
             Submit('submit', 'Submit', css_class='btn-success')
         )
+
+
+class GoogleSearchForm(forms.ModelForm):
+    title = forms.CharField(required=False)
+    author = forms.CharField(required=False)
+    ISBN = forms.CharField(max_length=ISBN_MAX_LENGTH, validators=[validate_isbn], required=False)
+
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'ISBN']

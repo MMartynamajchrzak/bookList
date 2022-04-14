@@ -8,10 +8,10 @@ from .validators import validate_isbn
 class Book(models.Model):
     title = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
     author = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
-    published_date = models.DateField()
-    ISBN = models.CharField(max_length=constants.ISBN_MAX_LENGTH, validators=[validate_isbn])
+    published_date = models.DateField(blank=True, null=True)
+    ISBN = models.CharField(max_length=constants.ISBN_MAX_LENGTH, validators=[validate_isbn], blank=True, null=True)
     pages_count = models.IntegerField(blank=True, null=True)
-    cover_link = models.URLField(validators=[URLValidator], max_length=constants.LONG_TEXT_LENGTH, blank=True)
+    cover_link = models.URLField(validators=[URLValidator], max_length=constants.LONG_TEXT_LENGTH, blank=True, null=True)
     language = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
 
     def __str__(self):
