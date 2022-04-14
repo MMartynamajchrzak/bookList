@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+
 <div>
     <h2>Books</h2>
     <a href="{% url 'add_book' %}">Add book</a>
@@ -45,6 +46,9 @@
             </tr>
         {% endfor %}
     </table>
+
 </div>
 
 {% endblock %}
+
+

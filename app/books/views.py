@@ -13,7 +13,7 @@ from .serializers import BookSerializer
 
 env = environ.Env()
 
-
+# base book form used to create AddBookFormView and UpdateFormView
 class BaseBookFormView:
     model = Book
     template_name = 'form.html'
@@ -59,7 +59,7 @@ class ImportBookFormView(BaseBookFormView, CreateView):
     def post(self, request, *args, **kwargs):
 
         def _parse_book(_api):
-            # special validation from disabled data
+            # special validation for data from external api
             necessary_keys = ['title', 'authors', 'language']
             optional_keys = ['publishedDate', 'pageCount', 'previewLink', 'industryIdentifiers']
 
@@ -81,6 +81,7 @@ class ImportBookFormView(BaseBookFormView, CreateView):
                 'language': _api['volumeInfo']['language']
             }
 
+        # use data from form to use in query filtering from external api
         params = ''
         title = self.request.POST.get('title')
         author = self.request.POST.get('author')
@@ -93,6 +94,7 @@ class ImportBookFormView(BaseBookFormView, CreateView):
         if isbn:
             params += f'isbn:{isbn}+'
 
+        # get the results
         google_api_results = self.get_books_from_external_api(params)
 
         # create list of books from api where the date format is correct
