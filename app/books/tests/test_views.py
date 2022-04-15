@@ -8,6 +8,7 @@ from .conftest import sample_book, book
 
 
 class TestAddUpdateBookFormView(TestCase):
+
     def setUp(self) -> None:
         self.client = APIClient()
 
@@ -17,8 +18,10 @@ class TestAddUpdateBookFormView(TestCase):
         self.assertRedirects(resp, reverse('list_books'), status_code=302, target_status_code=200)
         self.assertEqual(len(Book.objects.all()), 1)
 
+
     def test_update_book_redirects_successfully(self):
         created_book = sample_book()
+
         updated_book = {
             'title': 'Updated Title',
             'author': 'Test Author',
@@ -34,6 +37,7 @@ class TestAddUpdateBookFormView(TestCase):
 
 
 class TestBookViewSet(TestCase):
+
     def setUp(self):
         self.client = APIClient()
 
