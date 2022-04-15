@@ -22,6 +22,7 @@ class BaseBookFormView:
 
 """PART 1: List, Create, Update"""
 class BookListView(ListView):
+    paginate_by = 10
     model = Book
     template_name = 'list.html'
 
