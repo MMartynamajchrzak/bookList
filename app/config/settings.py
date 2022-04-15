@@ -12,7 +12,7 @@ SECRET_KEY = env.str("SECRET_KEY", default="")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'afternoon-tor-20481.herokuapp.com']
 
 
 # --------------------------installed-apps-----------------------------
