@@ -1,20 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from books.models import Book
-from .conftest import book
-
-
-def sample_book():
-    return Book.objects.create(
-        title=book['title'],
-        author=book['author'],
-        published_date=book['published_date'],
-        ISBN=book['ISBN'],
-        pages_count=book['pages_count'],
-        cover_link=book['cover_link'],
-        language=book['language']
-    )
+from .conftest import book, sample_book
 
 
 class TestBookModel(TestCase):

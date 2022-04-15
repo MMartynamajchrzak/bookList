@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from books.serializers import BookSerializer
-from .test_models import sample_book
+from .conftest import sample_book
 
 
 class TestBookSerializer(TestCase):
