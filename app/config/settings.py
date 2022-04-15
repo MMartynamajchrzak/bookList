@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 import environ
 
@@ -82,6 +83,11 @@ DATABASES = {
     }
 }
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+
 
 # --------------------------password-validation-----------------------------
 
@@ -115,8 +121,6 @@ USE_TZ = True
 # ------------------------------static-files--------------------------------
 
 STATIC_URL = '/static/'
-# location where you will store your static files
-STATICFILES_DIRS =  [os.path.join(BASE_DIR,'/static')]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #location where django collect all static files
