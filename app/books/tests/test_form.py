@@ -14,7 +14,6 @@ class TestBookForm(TestCase):
         }
 
     def test_fields_required_passed(self) -> None:
-
         form = BookForm(data=self.form_data)
         self.assertTrue(form.is_valid())
 

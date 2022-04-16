@@ -8,7 +8,7 @@ class TestBookSerializer(TestCase):
     def setUp(self) -> None:
         self.book = sample_book()
 
-    def test_serializer_data(self):
+    def test_serializer_data(self) -> None:
         serializer = BookSerializer(self.book)
         data = serializer.data
 

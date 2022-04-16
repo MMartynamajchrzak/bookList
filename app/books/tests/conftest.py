@@ -11,7 +11,8 @@ book = {
     'language': 'English'
 }
 
-def sample_book():
+
+def sample_book() -> Book:
     return Book.objects.create(
         title=book['title'],
         author=book['author'],
@@ -21,3 +22,30 @@ def sample_book():
         cover_link=book['cover_link'],
         language=book['language']
     )
+
+
+def mock_google_api() -> list:
+    return [
+        {
+            "volumeInfo": {
+                "title": "The Witcher 3: Wild Hunt - Strategy Guide",
+                "authors": [
+                    "GamerGuides.com"
+                ],
+                "publishedDate": "2015-10-20",
+                "industryIdentifiers": [
+                    {
+                        "type": "ISBN_13",
+                        "identifier": "9781630417543"
+                    },
+                    {
+                        "type": "ISBN_10",
+                        "identifier": "1630417548"
+                    }
+                ],
+                "pageCount": 184,
+                "language": "en",
+                "previewLink": "http://books.google.pl/books?id=lfHRCgAAQBAJ&printsec=frontcover&dq=intitle:Witcher&hl=&cd=1&source=gbs_api"
+            }
+    }
+]

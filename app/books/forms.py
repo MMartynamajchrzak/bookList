@@ -2,9 +2,9 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from django import forms
 
+from .constants import ISBN_MAX_LENGTH
 from .models import Book
 from .validators import validate_isbn
-from .constants import ISBN_MAX_LENGTH
 
 
 class BookForm(forms.ModelForm):

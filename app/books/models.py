@@ -6,7 +6,7 @@ from .validators import validate_isbn
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
+    title = models.CharField(max_length=constants.LONG_TEXT_LENGTH)
     author = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
     published_date = models.DateField(blank=True, null=True)
     ISBN = models.CharField(max_length=constants.ISBN_MAX_LENGTH, validators=[validate_isbn], blank=True, null=True)
@@ -14,5 +14,5 @@ class Book(models.Model):
     cover_link = models.URLField(validators=[URLValidator], max_length=constants.LONG_TEXT_LENGTH, blank=True, null=True)
     language = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.title}, {self.author}"

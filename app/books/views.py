@@ -22,8 +22,8 @@ class BaseBookFormView:
 
 """PART 1: List, Create, Update"""
 class BookListView(ListView):
-    paginate_by = 10
     model = Book
+    paginate_by = 20
     template_name = 'list.html'
 
     def get_context_data(self, **kwargs):
@@ -31,6 +31,10 @@ class BookListView(ListView):
         context['filter'] = BookFilter(self.request.GET, queryset=self.get_queryset())
 
         return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return BookFilter(self.request.GET, queryset=queryset).qs
 
 
 class AddBookFormView(BaseBookFormView, CreateView):
@@ -59,24 +63,28 @@ class ImportBookFormView(BaseBookFormView, CreateView):
 
     def post(self, request, *args, **kwargs):
 
-        def _parse_book(_api):
+        def _parse_book(_api) -> dict:
             # special validation for data from external api
-            necessary_keys = ['title', 'authors', 'language']
             optional_keys = ['publishedDate', 'pageCount', 'previewLink', 'industryIdentifiers']
-
-            for key in necessary_keys:
-                if not key in _api['volumeInfo']:
-                    continue
 
             for key in optional_keys:
                 if not key in _api['volumeInfo'] or (key == optional_keys[0] and len(_api['volumeInfo'][key]) != 10):
                     _api['volumeInfo'][key] = None
 
+            # additional validation for ISBN being in various structures in external api
+            if _api['volumeInfo']['industryIdentifiers'][0]['type'] != ('ISBN_13' or 'ISBN_10') \
+                    and len(_api['volumeInfo']['industryIdentifiers']) == 1:
+
+                _api['volumeInfo']['industryIdentifiers'][0]['identifier'] = None
+                _api['volumeInfo']['industryIdentifiers'].append({'type': None, 'identifier': None})
+
+
             return {
                 'title': _api['volumeInfo']['title'],
                 'author': _api['volumeInfo']['authors'][0],
                 'published_date': _api['volumeInfo']['publishedDate'],
-                'ISBN': _api['volumeInfo']['industryIdentifiers'][1]['identifier'],
+                'ISBN': _api['volumeInfo']['industryIdentifiers'][1]['identifier']
+                        or _api['volumeInfo']['industryIdentifiers'][0]['identifier'],
                 'pages_count': _api['volumeInfo']['pageCount'],
                 'cover_link': _api['volumeInfo']['previewLink'],
                 'language': _api['volumeInfo']['language']
