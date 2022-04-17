@@ -6,6 +6,7 @@ from .validators import validate_isbn
 
 
 class Book(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=constants.LONG_TEXT_LENGTH)
     author = models.CharField(max_length=constants.SHORT_TEXT_LENGTH)
     published_date = models.DateField(blank=True, null=True)
