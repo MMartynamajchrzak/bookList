@@ -3,7 +3,7 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['afternoon-tor-20481.herokuapp.com']
+ALLOWED_HOSTS = ['book-list-martyna.herokuapp.com']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
