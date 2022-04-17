@@ -1,7 +1,7 @@
 # noinspection PyUnresolvedReferences
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['afternoon-tor-20481.herokuapp.com']
 
