@@ -12,7 +12,7 @@ services:
 
   app:
     build: .
-    command: /./wait-for-postgres.sh
+    command: /./entrypoint.sh
     volumes:
       - ./app:/app
     ports:

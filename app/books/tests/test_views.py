@@ -38,7 +38,7 @@ class TestBookListView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('is_paginated', response.context)
         self.assertTrue(response.context['is_paginated'])
-        self.assertEqual(len(response.context['book_list']), 20)
+        self.assertEqual(len(response.context['book_list']), 10)
 
 
 """Test add book form"""

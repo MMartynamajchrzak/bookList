@@ -23,7 +23,7 @@ class BaseBookFormView:
 """PART 1: List, Create, Update"""
 class BookListView(ListView):
     model = Book
-    paginate_by = 20
+    paginate_by = 10
     template_name = 'list.html'
 
     def get_context_data(self, **kwargs):

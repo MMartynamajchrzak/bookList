@@ -4,8 +4,8 @@ COPY requirements.txt /requirements.txt
 
 RUN pip install -r /requirements.txt
 
-COPY wait-for-postgres.sh /wait-for-postgres.sh
+COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod +x wait-for-postgres.sh
+RUN chmod +x entrypoint.sh
 
 WORKDIR /app

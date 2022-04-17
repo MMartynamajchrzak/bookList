@@ -32,4 +32,6 @@ done
 
 >&2 echo 'PostgreSQL is up - continuing...'
 
-python /app/manage.py runserver 0.0.0.0:8000
+python manage.py migrate
+python manage.py collectstatic
+python manage.py runserver 0.0.0.0:8000
