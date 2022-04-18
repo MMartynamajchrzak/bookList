@@ -16,6 +16,14 @@ Project is available on heroku,
 
 
 ## Setup
+
+For project to run, you need secrets from env file:
+```
+cp app/env.template app/.env
+```
+All variables to be filled are in `app/.env`.
+
+
 To run app:
 ```
 $ make build
