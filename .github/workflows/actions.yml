@@ -14,6 +14,7 @@ jobs:
             db_user: django
             db_password: postgres
             db_port: 5432
+            db_host: db
 
     services:
       postgres:
@@ -22,7 +23,7 @@ jobs:
           POSTGRES_DB: ${{ matrix.db_name }}
           POSTGRES_USER: ${{ matrix.db_user }}
           POSTGRES_PASSWORD: ${{ matrix.db_password }}
-          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_HOST: ${{ matrix.db_host }}
           POSTGRES_PORT: ${{ matrix.db_port }}
         ports:
           - 5432:5432
