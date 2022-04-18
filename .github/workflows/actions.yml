@@ -10,8 +10,7 @@ jobs:
         db: [ postgres ]
         python-version: [ "3.10" ]
         include:
-          - db: postgres
-            db_name: postgres
+          - db_name: postgres
             db_user: django
             db_password: postgres
             db_port: 5432
