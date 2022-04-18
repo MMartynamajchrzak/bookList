@@ -11,7 +11,7 @@ to be searched.
 Data are stored in postgres db. Whole project is build on docker.
 
 
-Whole project is available on heroku, 
+Project is available on heroku, 
 [click here](http://book-list-martyna.herokuapp.com/books/list/).
 
 
