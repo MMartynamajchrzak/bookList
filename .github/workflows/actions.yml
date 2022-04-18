@@ -55,3 +55,11 @@ jobs:
       - name: Test with unittest
         run: |
           python ./app/manage.py test
+          
+        env:
+          POSTGRES_DB: ${{ matrix.db_name }}
+          POSTGRES_USER: ${{ matrix.db_user }}
+          POSTGRES_PASSWORD: ${{ matrix.db_password }}
+          POSTGRES_HOST: ${{ matrix.db_host }}
+          POSTGRES_PORT: ${{ matrix.db_port }}
+          SECRET_KEY: test
