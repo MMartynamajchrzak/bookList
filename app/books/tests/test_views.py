@@ -118,7 +118,6 @@ class TestImportBooksForm(TestCase):
         mock_get_books_from_external_api.return_value = mock_google_api()
         resp = self.client.post(reverse('import_books'), data={'title': 'Witcher'})
 
-
         self.assertRedirects(resp, reverse('list_books'), status_code=302, target_status_code=200)
         self.assertEqual(len(Book.objects.all()), 1)
         self.assertEqual(Book.objects.first().title, mock_google_api()[0]['volumeInfo']['title'])
@@ -171,9 +170,8 @@ class TestBookViewSet(TestCase):
         filterset_class = backend.get_filterset_class(view, queryset)
         self.assertEqual(filterset_class._meta.fields, view.filterset_fields)
 
-
     @override_settings(FILTERS_DEFAULT_LOOKUP_EXPR='icontains')
-    def test_modified_default_lookup(self) -> None:
+    def test_icontains_lookup(self) -> None:
 
         f = Book._meta.get_field('title')
         f2 = Book._meta.get_field('author')
@@ -184,27 +182,24 @@ class TestBookViewSet(TestCase):
         self.assertEqual(result.lookup_expr, 'icontains')
         self.assertEqual(result_2.lookup_expr, 'icontains')
 
-
     @override_settings(FILTERS_DEFAULT_LOOKUP_EXPR='exact')
-    def test_modified_default_lookup(self) -> None:
+    def test_exactt_lookup(self) -> None:
         f = Book._meta.get_field('language')
         result = FilterSet.filter_for_field(f, 'language')
 
         self.assertIsInstance(result, CharFilter)
         self.assertEqual(result.lookup_expr, 'exact')
 
-
     @override_settings(FILTERS_DEFAULT_LOOKUP_EXPR='lte')
-    def test_modified_default_lookup(self) -> None:
+    def test_lte_lookup(self) -> None:
         f = Book._meta.get_field('published_date')
         result = FilterSet.filter_for_field(f, 'to_date')
 
         self.assertIsInstance(result, DateFilter)
         self.assertEqual(result.lookup_expr, 'lte')
 
-
     @override_settings(FILTERS_DEFAULT_LOOKUP_EXPR='gte')
-    def test_modified_default_lookup(self) -> None:
+    def test_gte_lookup(self) -> None:
         f = Book._meta.get_field('published_date')
         result = FilterSet.filter_for_field(f, 'from_date')
 

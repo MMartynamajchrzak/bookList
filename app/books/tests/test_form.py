@@ -17,18 +17,15 @@ class TestBookForm(TestCase):
         form = BookForm(data=self.form_data)
         self.assertTrue(form.is_valid())
 
-
     def test_fields_required_failed(self) -> None:
         del self.form_data['author']
         form = BookForm(data=self.form_data)
         self.assertFalse(form.is_valid())
 
-
     def test_date_format_failed(self) -> None:
         self.form_data['published_date'] = '2020'
         form = BookForm(data=self.form_data)
         self.assertFalse(form.is_valid())
-
 
     def test_url_format_failed(self) -> None:
         self.form_data['cover_link'] = 'no url'

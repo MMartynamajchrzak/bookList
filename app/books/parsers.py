@@ -10,13 +10,11 @@ def _parse_book(_api) -> dict:
         if len(authors) > 0:
             author = authors[0]
 
-
     identifier = None
     ii = api_base.get('industryIdentifiers')
     if ii:
         if len(ii) >= 2:
             identifier = ii[1].get('identifier')
-
 
     return {
         'title': api_base.get('title') or 'No data',

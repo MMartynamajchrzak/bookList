@@ -14,6 +14,7 @@ from .serializers import BookSerializer
 
 env = environ.Env()
 
+
 # base book form used to create AddBookFormView and UpdateFormView
 class BaseBookFormView:
     model = Book

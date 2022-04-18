@@ -13,7 +13,6 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = ['title', 'author', 'published_date', 'ISBN', 'pages_count', 'cover_link', 'language']
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

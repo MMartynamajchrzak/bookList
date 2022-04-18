@@ -47,5 +47,5 @@ def mock_google_api() -> list:
                 "language": "en",
                 "previewLink": "http://books.google.pl/books?id=lfHRCgAAQBAJ&printsec=frontcover&dq=intitle:Witcher&hl=&cd=1&source=gbs_api"
             }
-    }
-]
+        }
+    ]

@@ -8,10 +8,11 @@ from .constants import CORRECT_ISBN_LEN
 def validate_isbn(value):
     if not value.isdigit() or len(str(value)) not in CORRECT_ISBN_LEN:
         raise ValidationError(
-            _(f"ISBN is a 13 digit International Standard Book Number."
-              f" Please input correct number of digits."),
+            _("ISBN is a 13 digit International Standard Book Number."
+              " Please input correct number of digits."),
             params={"value": value},
         )
+
 
 def validate_date(value):
     date_formats = ["%Y-%m-%d", "%Y-%m", "%Y"]
