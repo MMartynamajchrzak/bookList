@@ -119,7 +119,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'books/static'),
+    os.path.join(BASE_DIR, 'books/static 2'),
 )
 
 # Default primary key field type

@@ -1,6 +1,6 @@
 import environ
 import requests
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, ListView
 from django_filters.rest_framework import DjangoFilterBackend
@@ -48,8 +48,9 @@ class UpdateBookFormView(BaseBookFormView, UpdateView):
     form_class = BookForm
 
 
-"""PART 2 Add books from external api"""
+"""PART 2 Import books from external api"""
 class ImportBookFormView(BaseBookFormView, CreateView):
+    model = Book
     form_class = GoogleSearchForm
     template_name = 'google_form.html'
     success_url = reverse_lazy('list_books')
@@ -76,21 +77,27 @@ class ImportBookFormView(BaseBookFormView, CreateView):
         if isbn:
             params += f'isbn:{isbn}+'
 
-        # get the results
-        google_api_results = self.get_books_from_external_api(params)
+        form = self.get_form()
 
-        # create list of books from api where the date format is correct
-        if google_api_results:
-            book_data = [_parse_book(google_api_results[i]) for i in range(len(google_api_results))]
-        else:
+        if form.is_valid():
+            # get the results
+            google_api_results = self.get_books_from_external_api(params)
+
+            # create list of books from api where the date format is correct
+            if google_api_results:
+                book_data = [_parse_book(google_api_results[i]) for i in range(len(google_api_results))]
+            else:
+                return redirect('list_books')
+
+            # serialize and save to db
+            s_books = BookSerializer(data=book_data, many=True)
+            s_books.is_valid(raise_exception=True)
+            s_books.save()
+
             return redirect('list_books')
-
-        # serialize and save to db
-        s_books = BookSerializer(data=book_data, many=True)
-        s_books.is_valid(raise_exception=True)
-        s_books.save()
-
-        return redirect('list_books')
+        else:
+            context = {'form': form}
+            return render(request, 'google_form.html', context)
 
 
 """PART 3 List all books, with filtering by query params from django filters"""

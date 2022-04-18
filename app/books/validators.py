@@ -2,11 +2,11 @@ from datetime import datetime
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from .constants import CORRECT_ISBN_LEN
+from .constants import VALID_ISBN_LEN
 
 
 def validate_isbn(value):
-    if not value.isdigit() or len(str(value)) not in CORRECT_ISBN_LEN:
+    if not value.isdigit() or len(str(value)) not in VALID_ISBN_LEN:
         raise ValidationError(
             _("ISBN is a 13 digit International Standard Book Number."
               " Please input correct number of digits."),

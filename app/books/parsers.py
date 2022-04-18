@@ -13,7 +13,7 @@ def _parse_book(_api) -> dict:
     identifier = None
     ii = api_base.get('industryIdentifiers')
     if ii:
-        if len(ii) >= 2:
+        if len(ii) >= 2 and ii[1].get('identifier').isdigit():
             identifier = ii[1].get('identifier')
 
     return {
