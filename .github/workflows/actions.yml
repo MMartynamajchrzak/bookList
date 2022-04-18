@@ -14,7 +14,7 @@ jobs:
             db_user: django
             db_password: postgres
             db_port: 5432
-            db_host: db
+            db_host: 127.0.0.1
 
     services:
       postgres:
@@ -55,7 +55,6 @@ jobs:
       - name: Test with unittest
         run: |
           python ./app/manage.py test
-          
         env:
           POSTGRES_DB: ${{ matrix.db_name }}
           POSTGRES_USER: ${{ matrix.db_user }}
